@@ -6,9 +6,6 @@ const config = require('config');
 
 const Url = require('../models/Url');
 
-router.get('/', (req, res, next)=>{
-    
-});
 
 // @route   POST /api/url/shorten
 // @ desc   Create short URL
