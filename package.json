@@ -1,5 +1,5 @@
 {
-  "name": "url_shortener",
+  "name": "nano",
   "version": "1.0.0",
   "description": "simple url shortener service",
   "main": "server.js",
