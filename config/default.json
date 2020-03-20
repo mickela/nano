@@ -1,0 +1,6 @@
+{
+    "baseUrl": "http://localhost:5000",
+    "db_name": "nano",
+    "db_user": "postgres",
+    "db_pass": "root"
+}
