@@ -3,6 +3,22 @@ const router = express.Router();
 
 const Url = require('../models/Url');
 
+// @route GET all
+// @ desc fetch all short urls
+
+router.get('/urls', (req, res, next)=>{
+    Url.findAll()
+    .then(url =>{
+        let sUrl = JSON.stringify(url);
+        let pUrl = JSON.parse(sUrl);
+
+        res.json(pUrl)
+    }).catch(error =>{
+        console.log(error)
+        res.status(500).json('Internal Server Error')
+    })
+})
+
 // @route GET /:code
 // @ desc redirect to long/original url
 
