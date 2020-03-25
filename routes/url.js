@@ -28,7 +28,10 @@ router.post('/shorten', async (req, res, next)=>{
 
             console.log(url)
             if(url.length > 0){
-                res.json(url);
+                res.json({
+                    success: true,
+                    data: url
+                });
             }else{
                 const shortUrl = baseUrl + '/' + urlCode;
 
@@ -40,7 +43,10 @@ router.post('/shorten', async (req, res, next)=>{
                 }).then(response =>{
 
                     console.log(response)
-                    res.json(response);
+                    res.json({
+                        success: true,
+                        data: response
+                    });
 
                 }).catch(err => console.log(err))
                 
