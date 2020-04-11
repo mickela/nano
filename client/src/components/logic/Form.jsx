@@ -9,8 +9,8 @@ function Form(){
 
     return (
         <Consumer>
-            {value =>(
-                <FormUI onSubmit={(e)=> value.onSubmit(url, e)} onChange={onChange} val={url} />
+            {({ onSubmit }) =>(
+                <FormUI onSubmit={(e)=> onSubmit(url, e)} onChange={onChange} val={url} />
             )}
         </Consumer>
     )

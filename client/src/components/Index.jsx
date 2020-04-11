@@ -4,14 +4,12 @@ import Url from './logic/Url';
 
 function Index() {
     return (
-        <div>
+        <div className="container">
             <Form/>
-            <br/>
-            <hr/>
-            <br/>
+            <br/> <hr/> <br/>
             <Url/>
         </div>
     )
 }
 
-export default Index
+export default Index;

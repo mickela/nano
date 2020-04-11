@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-// import axios from 'axios';
 
 const Context = React.createContext();
 
@@ -19,13 +18,8 @@ export class Provider extends Component {
         })
         .then(data => data.json())
         .then(res =>{
-            console.log(res)
-            if(res.success === true){
-                this.fetchData();
-            }
-        }).catch(err =>{
-            console.log(err)
-        })
+            if(res.success === true) this.fetchData();
+        }).catch(err => console.log(err))
         
     }
 
@@ -33,14 +27,10 @@ export class Provider extends Component {
         fetch('/urls')
         .then(res => res.json())
         .then(data =>{
-            // console.log(data)
-            let array = [];
-            // let latest url appear first in the UI
-            for (let i = 0; i < data.length; i++) { array.unshift(data[i]) }
-
-            this.setState(()=>({ urls: array }))
+            // let newest url appear first in the UI
+            this.setState(()=>({ urls: data.sort((a,b)=> a.date < b.date) }))
         })
-        .catch(err =>{console.log(err)})
+        .catch(err => console.log(err))
     }
 
     componentDidMount(){

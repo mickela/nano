@@ -2,9 +2,10 @@ const express = require('express');
 const app = express();
 const db = require('./config/db');
 
-db.authenticate().then(res => console.log('PostgreSQL connected successfully')).catch(err => console.log(err))
+// db.authenticate().then(res => console.log('PostgreSQL connected successfully')).catch(err => console.log(err))
 
 app.use(express.json({ extended: false }));
+app.disable('x-powered-by');
 
 // routes
 app.use('/', require('./routes/index'));

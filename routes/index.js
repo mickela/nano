@@ -3,17 +3,15 @@ const router = express.Router();
 
 const Url = require('../models/Url');
 
+const json = (data) => JSON.parse(JSON.stringify(data));
+
 // @route GET all
 // @ desc fetch all short urls
 
 router.get('/urls', (req, res, next)=>{
     Url.findAll()
-    .then(url =>{
-        let sUrl = JSON.stringify(url);
-        let pUrl = JSON.parse(sUrl);
-
-        res.json(pUrl)
-    }).catch(error =>{
+    .then(url => res.json( json(url) ))
+    .catch(error =>{
         console.log(error)
         res.status(500).json('Internal Server Error')
     })
@@ -29,10 +27,10 @@ router.get('/:code', (req, res, next)=>{
         Url.findAll({ where: { urlCode: code } })
         .then(url => {
             if(url.length > 0){
-                let sUrl = JSON.stringify(url);
-                let pUrl = JSON.parse(sUrl)[0];
+                // let sUrl = JSON.stringify(url);
+                // let pUrl = JSON.parse(sUrl)[0];
                 
-                res.redirect(pUrl.longUrl);
+                res.redirect( json(url)[0].longUrl );
             }else{
                 res.status(400).json('No url found');
             }
