@@ -18,7 +18,7 @@ export default function UrlUI({ id, shortUrl, longUrl, date, copy, remove }){
 function Line({ title, detail }){
     return(
         <p>
-            <b>{title}:</b> <span> {detail} </span>
+            <b>{title}:</b> <span style={{ wordBreak: 'break-word' }}> {detail} </span>
         </p>
     )
 }
