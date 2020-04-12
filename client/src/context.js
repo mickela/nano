@@ -28,7 +28,9 @@ export class Provider extends Component {
         .then(res => res.json())
         .then(data =>{
             // let newest url appear first in the UI
-            this.setState(()=>({ urls: data.sort((a,b)=> a.date < b.date) }))
+	    let arr = [];
+	    for(const url of data) arr.unshift(url);
+            this.setState(()=>({ urls: arr }));
         })
         .catch(err => console.log(err))
     }
