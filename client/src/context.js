@@ -28,8 +28,9 @@ export class Provider extends Component {
         .then(res => res.json())
         .then(data =>{
             // let newest url appear first in the UI
-	    let arr = [];
-	    for(const url of data) arr.unshift(url);
+	        let arr = [];
+            for(const url of data) arr.unshift(url);
+
             this.setState(()=>({ urls: arr }));
         })
         .catch(err => console.log(err))
