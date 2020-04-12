@@ -42,4 +42,22 @@ router.get('/:code', (req, res, next)=>{
     }
 });
 
+// @route DELETE /:id
+// @ desc Delete url
+
+router.delete('/:id', async (req, res, next)=>{
+    try{
+        const { id } = req.params;
+        const response = await Url.destroy({ where: {id} });
+        
+        if(response === 1) res.json({ status: true, msg: 'Deleted successfully'});
+        else res.json({ status: false, msg: 'URL does not exist' });
+    }
+    catch(err){
+        console.log(err);
+        res.status(500).json('Internal Server Error');
+    }
+})
+
+
 module.exports = router;
