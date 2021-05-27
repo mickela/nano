@@ -6,7 +6,7 @@ const Url = require('../models/Url');
 const json = (data) => JSON.parse(JSON.stringify(data));
 
 // @route GET all
-// @ desc fetch all short urls
+// @desc fetch all short urls
 
 router.get('/urls', (req, res, next)=>{
     Url.findAll()
@@ -18,7 +18,7 @@ router.get('/urls', (req, res, next)=>{
 })
 
 // @route GET /:code
-// @ desc redirect to long/original url
+// @desc redirect to long/original url
 
 router.get('/:code', (req, res, next)=>{
     try {
@@ -29,7 +29,7 @@ router.get('/:code', (req, res, next)=>{
             if(url.length > 0){
                 // let sUrl = JSON.stringify(url);
                 // let pUrl = JSON.parse(sUrl)[0];
-                
+
                 res.redirect( json(url)[0].longUrl );
             }else{
                 res.status(400).json('No url found');
@@ -43,13 +43,13 @@ router.get('/:code', (req, res, next)=>{
 });
 
 // @route DELETE /:id
-// @ desc Delete url
+// @desc Delete url
 
 router.delete('/:id', async (req, res, next)=>{
     try{
         const { id } = req.params;
         const response = await Url.destroy({ where: {id} });
-        
+
         if(response === 1) res.json({ status: true, msg: 'Deleted successfully'});
         else res.json({ status: false, msg: 'URL does not exist' });
     }
